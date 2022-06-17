@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * {@code Pet} in the store inventory.
  */
 public enum InventoryStatus {
+
     AVAILABLE, PENDING, SOLD;
 
     /**

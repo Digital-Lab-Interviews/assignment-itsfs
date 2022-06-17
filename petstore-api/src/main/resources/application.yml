@@ -1,10 +1,10 @@
 spring:
   application:
-    name: Pet_Store_API    
+    name: pet-store-api
   jpa:
     hibernate:
       ddl-auto: none
     database: HSQL
-    
+
 server:
-  port: 9000    
+  port: 9000

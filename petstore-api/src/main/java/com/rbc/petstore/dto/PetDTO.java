@@ -1,9 +1,9 @@
 package com.rbc.petstore.dto;
 
+import com.rbc.petstore.model.InventoryStatus;
+
 import javax.validation.constraints.NotEmpty;
 
-import com.rbc.petstore.model.InventoryStatus;
-import com.rbc.petstore.model.Pet;
 
 /**
  * Pet Data Transfer Object
@@ -18,7 +18,7 @@ public class PetDTO {
     private InventoryStatus status;
 
     public PetDTO() {
-//		default constructor, nothing here for now
+        // default constructor, nothing here for now
     }
 
     public PetDTO(Long id, String name, InventoryStatus status) {

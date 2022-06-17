@@ -1,76 +1,73 @@
 import { Injectable } from '@angular/core';
 import { Pet } from '../model/pet';
-import { Observable, of } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PetService {
   private petsUrl = environment.apiUrl + 'pet';
 
-  private selectedPet = new Subject<Pet>();
+  private selectedPet$ = new BehaviorSubject<Pet>(null);
   private pets: Pet[];
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient) {
+  }
 
   getPets(): Observable<Pet[]> {
     return this.http
       .get<Pet[]>(this.petsUrl)
       .pipe(
-        tap((pets: Pet[]) => {
+        tap((response: Pet[]) => {
           this.log(`fetched pets`);
-          this.pets = pets;
+          this.pets = response;
         }),
-        catchError(this.handleError('getPets', []))
-    );
+        catchError(this.handleError('getPets', [])),
+      );
   }
 
-  getStatuses(): string[] {
-    return ["PENDING", "AVAILABLE", "SOLD"];
-  }
 
   addPet(pet: Pet): Observable<Pet> {
     return this.http
-      .post<Pet>(this.petsUrl, pet, httpOptions)
+      .post<Pet>(this.petsUrl, pet)
       .pipe(
-        tap((pet: Pet) => {
-          this.log(`created Pet with id=${pet.id}`);
-          this.pets.push(pet);
+        tap((response: Pet) => {
+          this.log(`created Pet with id=${response.id}`);
+          this.pets.push(response);
         }),
-        catchError(this.handleError<Pet>('addPet'))
-    );
+        catchError(this.handleError<Pet>('addPet')),
+      );
   }
 
   deletePet(pet: Pet): Observable<Pet> {
     const url = `${this.petsUrl}/${pet.id}`;
 
     return this.http
-      .delete<Pet>(url, httpOptions)
+      .delete<Pet>(url)
       .pipe(
         tap(_ => {
           this.log(`deleted Pet with id=${pet.id}`);
-          this.pets.splice(this.pets.findIndex(p=> p==pet), 1);
+          this.pets.splice(this.pets.findIndex(p => p === pet), 1);
         }),
-        catchError(this.handleError<Pet>('deletePet'))
-    );
+        catchError(this.handleError<Pet>('deletePet')),
+      );
   }
 
   setSelectedPet(pet: Pet) {
-    this.selectedPet.next(pet);
+    this.selectedPet$.next(pet);
+  }
+
+  clearSelectedPet() {
+    this.setSelectedPet(null);
   }
 
   getSelectedPet(): Observable<Pet> {
-    return this.selectedPet.asObservable();
+    return this.selectedPet$.asObservable();
   }
 
   /**
@@ -79,18 +76,18 @@ export class PetService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      alert(error.error.message);
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (response: HttpErrorResponse): Observable<T> => {
+      alert(response.error?.message || response.message);
 
-      console.error(error);
+      console.error(response);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      return of(result);
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a message */
   private log(message: string) {
     console.log('PetService: ' + message);
   }

@@ -1,24 +1,18 @@
 package com.rbc.petstore.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.*;
 
 /**
  * Pet class holding the pet entity information.
  */
 @Entity
 public class Pet {
+
     public Pet() {
         //  nothing to do here
     }
 
-    public Pet(Long id, @NotEmpty String name, InventoryStatus status) {
+    public Pet(Long id, String name, InventoryStatus status) {
         super();
         this.id = id;
         this.name = name;
@@ -30,7 +24,6 @@ public class Pet {
     @Column(name = "PET_ID")
     private Long id;
 
-    @NotEmpty
     private String name;
 
     @Enumerated(EnumType.STRING)

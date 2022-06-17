@@ -17,9 +17,9 @@ public class PetConvertor {
 
     public static Iterable<PetDTO> toDtoList(Iterable<Pet> pets) {
         return StreamSupport
-                .stream(pets.spliterator(), false)
-                .map(PetConvertor::toDto)
-                .collect(Collectors.toList());
+            .stream(pets.spliterator(), false)
+            .map(PetConvertor::toDto)
+            .collect(Collectors.toList());
     }
 
     public static Pet fromDto(PetDTO pet) {

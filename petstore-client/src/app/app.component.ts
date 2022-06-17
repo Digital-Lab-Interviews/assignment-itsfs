@@ -1,29 +1,46 @@
-import { Component } from '@angular/core';
-import { PetService } from "src/app/services/pet.service";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { PetService } from 'src/app/services/pet.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+
   title = 'Welcome to RBC Pet Store!';
   isAdd: boolean;
 
-  constructor(
-    private petService: PetService) { }
+  private readonly destroyed$ = new Subject<void>();
 
-  ngOnInit() {
-    this.getPets();
+  constructor(
+    private readonly petService: PetService,
+    private readonly cdRef: ChangeDetectorRef) {
   }
 
-  getPets() {
+  ngOnInit() {
+    this.getPet();
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  getPet() {
     this.petService.getSelectedPet()
-      .subscribe(pet => this.isAdd = false);
-  }  
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(selectedPet => {
+        if (selectedPet !== null) {
+          this.isAdd = false;
+          this.cdRef.detectChanges();
+        }
+      });
+  }
 
   addNewPet() {
-    this.petService.setSelectedPet(null);
+    this.petService.clearSelectedPet();
     this.isAdd = true;
   }
 }

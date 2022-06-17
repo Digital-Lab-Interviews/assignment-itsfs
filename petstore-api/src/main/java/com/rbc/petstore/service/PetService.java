@@ -1,14 +1,12 @@
 package com.rbc.petstore.service;
 
-import java.security.InvalidParameterException;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.rbc.petstore.dto.PetDTO;
 import com.rbc.petstore.model.Pet;
 import com.rbc.petstore.repository.PetRepository;
+import org.springframework.stereotype.Service;
+
+import java.security.InvalidParameterException;
+import java.util.Optional;
 
 /**
  * Pet Service
@@ -18,8 +16,11 @@ import com.rbc.petstore.repository.PetRepository;
 @Service
 public class PetService {
 
-    @Autowired
-    PetRepository petRepository;
+    private final PetRepository petRepository;
+
+    public PetService(PetRepository petRepository) {
+        this.petRepository = petRepository;
+    }
 
     /**
      * Get all Pets
@@ -61,7 +62,7 @@ public class PetService {
      */
     public void deletePet(Long id) {
         Optional<Pet> toDelete = petRepository.findById(id);
-        if (!toDelete.isPresent()) {
+        if (toDelete.isEmpty()) {
             throw new InvalidParameterException("Pet not found");
         }
 

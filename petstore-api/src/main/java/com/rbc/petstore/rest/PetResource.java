@@ -7,11 +7,7 @@ import com.rbc.petstore.util.PetConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 /**
  * REST operations for {@link PetDTO} resource
@@ -26,11 +22,6 @@ public class PetResource {
     @Autowired
     public PetResource(PetService petService) {
         this.petService = petService;
-    }
-
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(List.class, new StringToInventoryStatusConverter());
     }
 
     /**
@@ -66,7 +57,7 @@ public class PetResource {
      * @return if successfully it returns {@link HttpStatus#CREATED} on status and the created {@link PetDTO}, {@link HttpStatus#BAD_REQUEST} on status otherwise
      */
     @PostMapping("")
-    public ResponseEntity<PetDTO> create(@Valid @RequestBody PetDTO petDto) {
+    public ResponseEntity<PetDTO> create(@RequestBody PetDTO petDto) {
         try {
             Pet pet = PetConvertor.fromDto(petDto);
             Pet createdPet = petService.createPet(pet);

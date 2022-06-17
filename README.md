@@ -18,9 +18,9 @@ The project is a Spring Boot 2 implementation of the Pet services defined by the
 
 #### Client
 
-The project is a simplistic Angular.IO implementation consuming the REST services defined by the server.
+The project is a simplistic Angular implementation consuming the REST services defined by the server.
 
 * Open a terminal in **petstore-client** folder
 * Install the node modules by typing `npm install`
-* Run the application by running `ng serve`
+* Run the application by running `npm start`
 * To experience the application visit [http://localhost:4200](http://localhost:4200)

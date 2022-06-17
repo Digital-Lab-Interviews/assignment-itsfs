@@ -1,7 +1,7 @@
 package com.rbc.petstore.repository;
 
-import org.springframework.data.repository.CrudRepository;
 import com.rbc.petstore.model.Pet;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * {@link Pet} CRUD operations

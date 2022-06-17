@@ -1,20 +1,25 @@
-<div class="card">
-  <div class="input-group">
+<form>
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="name">Name</label>
     </div>
-    <input type="text" class="form-control" id="name" [(ngModel)]="model.name">
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name">
   </div>
-  <div class="input-group">
+
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="status">Status</label>
     </div>
-    <select class="custom-select" id="status" [(ngModel)]="model.status">
+    <select class="form-select" id="status" name="status" [(ngModel)]="model.status">
       <option selected>Choose...</option>
       <option *ngFor="let s of statuses" [ngValue]="s">{{s}}</option>
     </select>
   </div>
-  <div class="input-group float-right">
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add</button>
+
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+      <button type="reset" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add</button>
+    </div>
   </div>
-</div>
+</form>
