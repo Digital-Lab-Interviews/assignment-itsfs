@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pet } from '../model/pet';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
@@ -24,7 +24,7 @@ export class PetService {
       .get<Pet[]>(this.petsUrl)
       .pipe(
         tap((response: Pet[]) => {
-          this.log(`fetched pets`);
+          PetService.log(`fetched pets`);
           this.pets = response;
         }),
         catchError(this.handleError('getPets', [])),
@@ -37,7 +37,7 @@ export class PetService {
       .post<Pet>(this.petsUrl, pet)
       .pipe(
         tap((response: Pet) => {
-          this.log(`created Pet with id=${response.id}`);
+          PetService.log(`created Pet with id=${response.id}`);
           this.pets.push(response);
         }),
         catchError(this.handleError<Pet>('addPet')),
@@ -51,7 +51,7 @@ export class PetService {
       .delete<Pet>(url)
       .pipe(
         tap(_ => {
-          this.log(`deleted Pet with id=${pet.id}`);
+          PetService.log(`deleted Pet with id=${pet.id}`);
           this.pets.splice(this.pets.findIndex(p => p === pet), 1);
         }),
         catchError(this.handleError<Pet>('deletePet')),
@@ -88,7 +88,7 @@ export class PetService {
   }
 
   /** Log a message */
-  private log(message: string) {
+  private static log(message: string) {
     console.log('PetService: ' + message);
   }
 }

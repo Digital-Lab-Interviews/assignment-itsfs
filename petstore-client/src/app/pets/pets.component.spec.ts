@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { PetsComponent } from './pets.component';
 import { AppModule } from 'src/app/app.module';
+import { PetsComponent } from './pets.component';
 
 describe('Component: PetsComponent', () => {
   let component: PetsComponent;

@@ -1,31 +1,30 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
+import { AppComponent } from './app.component';
 
 describe('Component: AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [],
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create the app', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   }));
 
-  it(`should have as title 'app'`, waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Welcome to RBC Pet Store!');
-  }));
-
-  it('should render title in a h2 tag', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+  it('should render title in a h1 tag', waitForAsync(() => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Welcome to RBC Pet Store!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to RBC Pet Store!');
   }));
 });

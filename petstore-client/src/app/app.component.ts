@@ -9,7 +9,6 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  title = 'Welcome to RBC Pet Store!';
   isAdd: boolean;
 
   private readonly destroyed$ = new Subject<void>();

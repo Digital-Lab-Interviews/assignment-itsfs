@@ -1,11 +1,11 @@
-import { browser, by, element } from 'protractor';
+import { getPage } from "../playwright-utils";
 
 export class AppPage {
   navigateTo() {
-    return browser.get('/');
+    return getPage().goto('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getHeaderText() {
+    return getPage().locator('app-root h1').innerText();
   }
 }

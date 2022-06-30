@@ -1,12 +1,12 @@
-import { inject, TestBed } from '@angular/core/testing';
-
-import { PetService } from './pet.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { environment } from '../../environments/environment';
+import { Status } from '../model/status';
+import { PetService } from './pet.service';
 
 describe('Service: PetService', () => {
   let httpTestingController: HttpTestingController;
+  let service: PetService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,8 +14,8 @@ describe('Service: PetService', () => {
       providers: [PetService],
     });
 
-    httpTestingController = TestBed.get(HttpTestingController);
-
+    httpTestingController = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(PetService);
   });
 
   afterEach(() => {
@@ -23,31 +23,31 @@ describe('Service: PetService', () => {
     httpTestingController.verify();
   });
 
-  it('should be created', inject([PetService], (service: PetService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
-  it('should return an array of pets when get is called', inject([PetService, HttpTestingController], (service: PetService) => {
+  it('should return an array of pets when get is called', () => {
 
     const petsResponse = [
       {
         id: 1,
-        name: 'bobby',
-        status: 'Available',
+        name: 'Bobby',
+        status: Status.AVAILABLE,
       },
       {
         id: 2,
-        name: 'lamp',
-        status: 'Available',
+        name: 'Lamp',
+        status: Status.SOLD,
       },
     ];
 
     service.getPets().subscribe(pets => {
-      expect(pets.length).toBe(2);
+      expect(pets).toEqual(petsResponse);
     });
 
     httpTestingController.expectOne(environment.apiUrl + 'pet').flush(petsResponse);
 
-  }));
+  });
 
 });
