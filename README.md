@@ -27,6 +27,7 @@ The project is a simplistic Angular implementation consuming the REST services d
 
 * Open a terminal in **petstore-client** folder.
 * Install the node modules by typing `npm install`
-* Run the application by running `npm start`
-* Run the tests with `npm test`
+* Run the application by running `npm run start`
+* Run the tests with `npm run test`
+* Run the end-to-end tests with `npm run e2e`
 * To experience the application visit [http://localhost:4200](http://localhost:4200).
