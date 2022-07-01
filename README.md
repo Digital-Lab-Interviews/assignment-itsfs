@@ -5,9 +5,9 @@
 Download the source code on your machine either using `git clone` or the `Download ZIP` functionality of Github.
 
 ### Prerequisites
-* [Java](https://www.oracle.com/java/technologies/downloads/) version 11 or later.
-* [NodeJS](https://nodejs.org/en/) version 14.15.x or later.
-* (Optional) [Maven](https://maven.apache.org/download.cgi) version 3.6.3 or later, or use the provided [Maven wrapper](https://maven.apache.org/wrapper/) scripts.
+* [Java](https://www.oracle.com/java/technologies/downloads/) version 11 or higher.
+* [NodeJS](https://nodejs.org/en/) version 14.15.x or higher.
+* (Optional) [Maven](https://maven.apache.org/download.cgi) version 3 or higher, or use the provided [Maven wrapper](https://maven.apache.org/wrapper/) scripts.
 
 ## Usage
 
