@@ -64,8 +64,6 @@ class PetResourceIT {
     /**
      * Test Pet creation REST calls with invalid inputs that must fail at validation level
      *
-     * ---> Failing test, need to fix <---
-     *
      * @throws IOException
      * @throws Exception
      * @see PetResource#create(PetDTO)

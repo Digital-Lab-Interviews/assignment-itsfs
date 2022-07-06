@@ -5,6 +5,7 @@
 Download the source code on your machine either using `git clone` or the `Download ZIP` functionality of Github.
 
 ### Prerequisites
+* Your IDE of choice.
 * [Java](https://www.oracle.com/java/technologies/downloads/) version 11 or higher.
 * [NodeJS](https://nodejs.org/en/) version 14.15.x or higher.
 * (Optional) [Maven](https://maven.apache.org/download.cgi) version 3 or higher, or use the provided [Maven wrapper](https://maven.apache.org/wrapper/) scripts.
