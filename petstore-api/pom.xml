@@ -127,7 +127,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <skipTests>${skipTests}</skipTests>
-          <argLine>@{surefireArgLine}</argLine>
+<!--          <argLine>@{surefireArgLine}</argLine>-->
           <includes>
             <include>**/*Test.java</include>
           </includes>
@@ -138,7 +138,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
           <skipITs>${skipTests}</skipITs>
-          <argLine>@{failsafeArgLine}</argLine>
+<!--          <argLine>@{failsafeArgLine}</argLine>-->
           <includes>
             <include>**/*IT.java</include>
           </includes>
