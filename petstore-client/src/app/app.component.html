@@ -9,25 +9,21 @@
 
   <div class="row py-4">
     <div class="col-md-6 offset-md-3 d-flex justify-content-center">
-      <button (click)="addNewPet()" id="new-pet-btn" class="btn btn-primary">Add new pet</button>
+      <button (click)="openAddPet()" id="new-pet-btn" class="btn btn-primary">Add new pet</button>
     </div>
   </div>
 
   <div class="row py-4">
     <div class="col-md-6 offset-md-3">
-      <app-pets></app-pets>
+      <app-pet-list [pets]="pets" [selectedPet]="selectedPet"
+                    (onPetSelect)="selectPet($event)" (onPetDelete)="deletePet($event)">
+      </app-pet-list>
     </div>
   </div>
 
-  <div class="row py-4" *ngIf="!isAdd">
-    <div class="col-md-6 offset-md-3">
-      <app-pet-detail></app-pet-detail>
-    </div>
-  </div>
-
-  <div class="row py-4" *ngIf="isAdd">
-    <div class="col-md-6 offset-md-3">
-      <app-pet-add></app-pet-add>
+  <div class="row py-4" [ngSwitch]="petAction">
+    <div class="col-md-6 offset-md-3" *ngSwitchCase="'add'">
+      <app-pet-add (onCancel)="closeAddPet()" (onSubmit)="addPet($event)"></app-pet-add>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center"
       *ngFor="let pet of pets"
-      (click)="onSelect(pet)"
+      (click)="select(pet)"
       [class.active]="pet === selectedPet"
   >
     <span class="badge bg-secondary">{{pet.id}}</span>

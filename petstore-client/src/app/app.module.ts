@@ -5,16 +5,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { PetsComponent } from './pets/pets.component';
-import { PetDetailComponent } from './pet-detail/pet-detail.component';
+import { PetListComponent } from './pet-list/pet-list.component';
 import { PetAddComponent } from './pet-add/pet-add.component';
 import { PetService } from 'src/app/services/pet.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PetsComponent,
-    PetDetailComponent,
+    PetListComponent,
     PetAddComponent
   ],
   imports: [

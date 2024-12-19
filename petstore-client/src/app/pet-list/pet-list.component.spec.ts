@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
-import { PetDetailComponent } from './pet-detail.component';
+import { PetsComponent } from './pets.component';
 
-describe('Component: PetDetailComponent', () => {
-  let component: PetDetailComponent;
-  let fixture: ComponentFixture<PetDetailComponent>;
+describe('Component: PetListComponent', () => {
+  let component: PetsComponent;
+  let fixture: ComponentFixture<PetsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('Component: PetDetailComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PetDetailComponent);
+    fixture = TestBed.createComponent(PetsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

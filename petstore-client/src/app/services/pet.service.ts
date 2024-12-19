@@ -10,9 +10,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PetService {
+
   private petsUrl = environment.apiUrl + 'pet';
 
-  private selectedPet$ = new BehaviorSubject<Pet>(null);
   private pets: Pet[];
 
   constructor(
@@ -30,7 +30,6 @@ export class PetService {
         catchError(this.handleError('getPets', [])),
       );
   }
-
 
   addPet(pet: Pet): Observable<Pet> {
     return this.http
@@ -56,18 +55,6 @@ export class PetService {
         }),
         catchError(this.handleError<Pet>('deletePet')),
       );
-  }
-
-  setSelectedPet(pet: Pet) {
-    this.selectedPet$.next(pet);
-  }
-
-  clearSelectedPet() {
-    this.setSelectedPet(null);
-  }
-
-  getSelectedPet(): Observable<Pet> {
-    return this.selectedPet$.asObservable();
   }
 
   /**
