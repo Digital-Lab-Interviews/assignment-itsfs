@@ -12,6 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/pet", petController);
 
+// Health check endpoint for /health.html
+app.get("/health.html", (req, res) => {
+  res.status(200).send("OK. Healthy!");
+});
+
 app.listen(PORT, () => {
   console.log(`Petstore Express API running on http://localhost:${PORT}`);
 });
