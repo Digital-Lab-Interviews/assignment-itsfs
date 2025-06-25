@@ -14,10 +14,6 @@ async function addPet(pet) {
   return await petRepository.add(pet);
 }
 
-async function updatePet(id, pet) {
-  return await petRepository.update(id, pet);
-}
-
 async function deletePet(id) {
   return await petRepository.delete(id);
 }
@@ -26,6 +22,4 @@ module.exports = {
   getAllPets,
   getPetById,
   addPet,
-  updatePet,
-  deletePet,
 };

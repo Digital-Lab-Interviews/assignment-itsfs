@@ -35,37 +35,8 @@ async function add(pet) {
   return pet;
 }
 
-/** * Updates an existing pet in the database.
- * @param {string} id - The ID of the pet to update.
- * @param {Object} pet - The updated pet object.
- * @returns {Promise<Object|null>} The updated pet object or null if not found.
- */
-async function update(id, pet) {
-  const db = await fs.readJson(dbPath);
-  const idx = db.pets.findIndex((p) => p.id === id);
-  if (idx === -1) return null;
-  db.pets[idx] = { ...db.pets[idx], ...pet, id };
-  await fs.writeJson(dbPath, db, { spaces: 2 });
-  return db.pets[idx];
-}
-
-/** * Deletes a pet from the database by its ID.
- * @param {string} id - The ID of the pet to delete.
- * @returns {Promise<boolean>} True if the pet was deleted, false if not found.
- */
-async function deletePet(id) {
-  const db = await fs.readJson(dbPath);
-  const idx = db.pets.findIndex((p) => p.id === id);
-  if (idx === -1) return false;
-  db.pets.splice(idx, 1);
-  await fs.writeJson(dbPath, db, { spaces: 2 });
-  return true;
-}
-
 module.exports = {
   getAll,
   getById,
   add,
-  update,
-  delete: deletePet,
 };

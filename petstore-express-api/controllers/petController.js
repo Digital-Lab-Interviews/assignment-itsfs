@@ -35,23 +35,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update pet
-router.put("/:id", async (req, res) => {
-  try {
-    const pet = toPet({ ...req.body, id: req.params.id });
-    const updatedPet = await petService.updatePet(req.params.id, pet);
-    if (updatedPet) res.json(new Pet(updatedPet));
-    else res.status(404).json({ message: "Pet not found" });
-  } catch (e) {
-    res.status(400).json({ message: e.message });
-  }
-});
-
-// Delete pet
-router.delete("/:id", async (req, res) => {
-  const deleted = await petService.deletePet(req.params.id);
-  if (deleted) res.json({ message: "Pet deleted" });
-  else res.status(404).json({ message: "Pet not found" });
-});
-
 module.exports = router;
