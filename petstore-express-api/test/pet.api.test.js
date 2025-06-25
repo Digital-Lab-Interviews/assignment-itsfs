@@ -25,8 +25,8 @@ async function resetDb() {
       },
       {
         id: "a7a23bac-dc2f-45a1-a14b-aad6aed1bb06",
-        name: "bella",
-        status: "PENDING",
+        name: "Bella",
+        status: "pending",
       },
     ],
   };

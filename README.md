@@ -28,6 +28,7 @@ The project is a Spring Boot implementation of the Pet store
 The project is an express implementation of the Pet store.
 
 - Open a terminal in **petstore-express-api** folder.
+- Install the dependencies by running `npm install`.
 - Run the application by running `npm run dev`.
 - Run the unit tests with `npm run test`.
 - After successful build, the application should be running in port **9000**.
