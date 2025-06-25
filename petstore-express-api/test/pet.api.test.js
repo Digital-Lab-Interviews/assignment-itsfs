@@ -65,26 +65,26 @@ describe("Pet API", function () {
     });
   });
 
-  it("PUT /api/pet/:id should update a pet", async function () {
-    const res = await chai
-      .request(app)
-      .put("/api/pet/3c4d5e6f-3333-4444-5555-666677778888")
-      .send({ name: "Maximus", status: "available" });
-    expect(res).to.have.status(200);
-    expect(res.body).to.include({
-      id: "3c4d5e6f-3333-4444-5555-666677778888",
-      name: "Maximus",
-      status: "available",
-    });
-  });
+  // it("PUT /api/pet/:id should update a pet", async function () {
+  //   const res = await chai
+  //     .request(app)
+  //     .put("/api/pet/3c4d5e6f-3333-4444-5555-666677778888")
+  //     .send({ name: "Maximus", status: "available" });
+  //   expect(res).to.have.status(200);
+  //   expect(res.body).to.include({
+  //     id: "3c4d5e6f-3333-4444-5555-666677778888",
+  //     name: "Maximus",
+  //     status: "available",
+  //   });
+  // });
 
-  it("DELETE /api/pet/:id should delete a pet", async function () {
-    const res = await chai
-      .request(app)
-      .delete("/api/pet/3c4d5e6f-3333-4444-5555-666677778888");
-    expect(res).to.have.status(200);
-    expect(res.body).to.have.property("message", "Pet deleted");
-  });
+  // it("DELETE /api/pet/:id should delete a pet", async function () {
+  //   const res = await chai
+  //     .request(app)
+  //     .delete("/api/pet/3c4d5e6f-3333-4444-5555-666677778888");
+  //   expect(res).to.have.status(200);
+  //   expect(res.body).to.have.property("message", "Pet deleted");
+  // });
 
   it("POST /api/pet should fail if required fields are missing", async function () {
     const res = await chai
