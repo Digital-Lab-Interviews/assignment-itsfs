@@ -29,7 +29,7 @@ The project is an express implementation of the Pet store.
 
 - Open a terminal in **petstore-express-api** folder.
 - Run the application by running `npm run dev`.
-- Run the unit and integration tests with `mvn verify` (or `mvnw verify` if using the Maven wrapper).
+- Run the unit tests with `npm run test`.
 - After successful build, the application should be running in port **9000**.
 - To test application health you can use the following address in your preferable web-browser, [http://localhost:9000/health.html](http://localhost:9000/health.html).
 

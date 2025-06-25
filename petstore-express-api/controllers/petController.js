@@ -5,8 +5,8 @@ const Pet = require("../models/pet");
 
 // Helper to validate and create Pet instance
 function toPet(data) {
-  if (!data.name || !data.status) {
-    throw new Error("Missing required pet fields: name, status");
+  if (!data.name) {
+    throw new Error("Missing required pet fields");
   }
   return new Pet({ id: data.id, name: data.name, status: data.status });
 }

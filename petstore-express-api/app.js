@@ -17,6 +17,10 @@ app.get("/health.html", (req, res) => {
   res.status(200).send("OK. Healthy!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Petstore Express API running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Petstore Express API running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
