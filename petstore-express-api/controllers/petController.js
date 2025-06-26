@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const petService = require("../services/petService");
+const utilService = require("../services/utilService");
 const Pet = require("../models/pet");
 
 // Helper to validate and create Pet instance
@@ -27,7 +28,9 @@ router.get("/:id", async (req, res) => {
 // Add new pet
 router.post("/", async (req, res) => {
   try {
-    const pet = toPet(req.body);
+    const id = utilService.generateUUID();
+    const reqData = { ...req.body, id };
+    const pet = toPet(reqData);
     const newPet = await petService.addPet(pet);
     res.status(201).json(new Pet(newPet));
   } catch (e) {
