@@ -1,0 +1,19 @@
+{
+  "pets": [
+    {
+      "id": "3c4d5e6f-3333-4444-5555-666677778888",
+      "name": "Max",
+      "status": "sold"
+    },
+    {
+      "id": "4d5e6f7g-9999-0000-1111-222233334444",
+      "name": "Luna",
+      "status": "available"
+    },
+    {
+      "id": "a7a23bac-dc2f-45a1-a14b-aad6aed1bb06",
+      "name": "Bella",
+      "status": "pending"
+    }
+  ]
+}
